@@ -30,6 +30,16 @@ class Customer(Base):
     salary:Mapped[int] = mapped_column(nullable=True)
     department:Mapped[str] = mapped_column(nullable=True)
     
+    
+    
+class Product(Base):
+    __tablename__='products'
+    
+    p_id:Mapped[int]=mapped_column(primary_key=True,autoincrement=True)
+    product_name:Mapped[str]=mapped_column(nullable=False)
+    price:Mapped[int] = mapped_column(nullable=False)
+    quantity:Mapped[int] = mapped_column(nullable=False)
+    
 # select query for the sql alchemy
     # stmt=text('Select * from customers')
     # result=session.execute(stmt)
@@ -38,11 +48,11 @@ class Customer(Base):
     #     print(row)
     
 # insert into database using sql alchemy
-    insert_statement = text ("""INSERT INTO customers (customer_name,salary,department) VALUES ('Ganesh kunwar',15000,'It department')""")
-    result=session.execute(insert_statement)
-    print(result.__dict__)
+    # insert_statement = text ("""INSERT INTO customers (customer_name,salary,department) VALUES ('Ganesh kunwar',15000,'It department')""")
+    # result=session.execute(insert_statement)
+    # print(result.__dict__)
     # return id (insert return id )
-    session.commit()
+    # session.commit()
     
     
 
@@ -56,3 +66,13 @@ class Customer(Base):
     # remove_delete=session.execute(delete_customer)
     # session.commit()
     
+    
+# join solutions
+join_statement = text('''select products.p_id,products.product_name,customers.customer_name
+                    from customers
+                    join products on products.p_id=customers.id 
+                      ''')
+
+new_join=session.execute(join_statement)
+print(new_join.__dict__)
+session.commit()
