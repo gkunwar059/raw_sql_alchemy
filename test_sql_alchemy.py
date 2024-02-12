@@ -38,20 +38,21 @@ class Customer(Base):
     #     print(row)
     
 # insert into database using sql alchemy
-    # insert_statement = text ("""INSERT INTO customers (customer_name,salary,department) VALUES ('Ganesh kunwar',15000,'It department')""")
-    # result=session.execute(insert_statement)
-    # session.commit()
-    # for row_insert in result:
-    #     print(row_insert)
+    insert_statement = text ("""INSERT INTO customers (customer_name,salary,department) VALUES ('Ganesh kunwar',15000,'It department')""")
+    result=session.execute(insert_statement)
+    print(result.__dict__)
+    # return id (insert return id )
+    session.commit()
+    
     
 
-    #update statement 
+    # #update statement 
     # update_customer=text('''update customers set customer_name='Krishna budha',salary=4000 where id=1''') 
     # updated_customer=session.execute(update_customer)
     # session.commit()
     
-    # delete operations
-    delete_customer=text('''  delete from customers where id=1''')
-    remove_delete=session.execute(delete_customer)
-    session.commit()
+    # # delete operations
+    # delete_customer=text('''  delete from customers where id=1''')
+    # remove_delete=session.execute(delete_customer)
+    # session.commit()
     
